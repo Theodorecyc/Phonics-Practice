@@ -50,4 +50,44 @@ button {
   color: white;
   padding: 10px 20px;
   font-size: 16px;
-  border:
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* 輸入框的基本樣式 */
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 訪問計數器的顯示樣式 */
+#visitorCounter {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+/* 夥伴圖片樣式 */
+#partnerImage {
+  display: block;
+  margin: 20px auto;
+  max-width: 200px;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Logo 圖片樣式 */
+#logo {
+  display: block;
+  margin: 20px auto;
+  max-width
