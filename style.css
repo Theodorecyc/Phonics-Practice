@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.container {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+.letter-box {
+    font-size: 40px;
+    font-weight: bold;
+    padding: 20px;
+    border: 2px solid #000;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: #ddd;
+}
+
+.partner {
+    margin-top: 10px;
+}
+
+.partner img {
+    width: 120px;
+    height: auto;
+}
