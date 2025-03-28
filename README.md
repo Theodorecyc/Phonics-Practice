@@ -122,3 +122,22 @@
         }
 
         function updateScore() {
+            const scoreElement = document.getElementById("score");
+            const accuracy = ((correctCount / totalCount) * 100).toFixed(2); // 計算正確率，取小數點後兩位
+            scoreElement.textContent = `正確率: ${accuracy}% (${correctCount}/${totalCount})`;
+        }
+
+        // 訪問計數器
+        function updateVisitCount() {
+            let count = localStorage.getItem("visitCount");
+            count = count ? parseInt(count) + 1 : 1;
+            localStorage.setItem("visitCount", count);
+            document.getElementById("visitCount").textContent = count;
+        }
+
+        // 當網頁載入時更新訪問計數
+        window.onload = updateVisitCount;
+    </script>
+
+</body>
+</html>
