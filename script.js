@@ -18,7 +18,7 @@ function generateLetter(...boxes) {
   });
 }
 
-// 語音辨識
+// 語音辨識 (僅 Level 1)
 function startSpeechRecognition() {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = 'en-US';
@@ -27,10 +27,10 @@ function startSpeechRecognition() {
   
   recognition.onresult = function(event) {
     const userSpeech = event.results[0][0].transcript;
-    document.getElementById("speechResult").innerText = `辨識結果: ${userSpeech}`;
+    document.getElementById("speechResult1").innerText = `辨識結果: ${userSpeech}`;
   };
   
   recognition.onerror = function(event) {
-    document.getElementById("speechResult").innerText = "語音辨識發生錯誤。";
+    document.getElementById("speechResult1").innerText = "語音辨識發生錯誤。";
   };
 }
