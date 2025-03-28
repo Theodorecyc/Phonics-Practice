@@ -1,4 +1,17 @@
-// 訪問人數計數
+// 確保 DOM 加載完成後才執行
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("JavaScript 加載成功！");
+
+    // 獲取按鈕
+    const letterButton = document.querySelector("#generateLetterButton");
+    if (letterButton) {
+        letterButton.addEventListener("click", generateLetter);
+    } else {
+        console.error("無法找到 '產生字母' 按鈕！");
+    }
+});
+
+// 訪問計數
 if (localStorage.getItem("visitCount")) {
     let count = parseInt(localStorage.getItem("visitCount"));
     count++;
@@ -9,19 +22,27 @@ if (localStorage.getItem("visitCount")) {
     document.getElementById("visitCount").innerText = 1;
 }
 
-// Level 1 - 產生隨機字母
+// 隨機產生字母
 const letters = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh", "Ii", "Jj", "Kk", "Ll", "Mm", "Nn", "Oo", "Pp", "Qq", "Rr", "Ss", "Tt", "Uu", "Vv", "Ww", "Xx", "Yy", "Zz"];
 let correctCount = 0;
 let totalCount = 0;
 let currentLetter = "";
 
 function generateLetter() {
+    console.log("產生字母函式執行");
     const randomIndex = Math.floor(Math.random() * letters.length);
     currentLetter = letters[randomIndex];
-    document.getElementById("letterBox").innerText = currentLetter;
+    
+    const letterBox = document.getElementById("letterBox");
+    if (letterBox) {
+        letterBox.innerText = currentLetter;
+        console.log("產生的字母: " + currentLetter);
+    } else {
+        console.error("找不到 'letterBox' 元素！");
+    }
 }
 
-// Level 1 - 語音辨識功能
+// 語音辨識功能
 function startSpeechRecognition() {
     if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
         alert("您的瀏覽器不支援語音辨識功能，請使用 Chrome 或 Edge");
@@ -29,7 +50,7 @@ function startSpeechRecognition() {
     }
 
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = "en-US"; // 設定語言
+    recognition.lang = "en-US";
     recognition.start();
 
     recognition.onresult = function(event) {
