@@ -3,36 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phonics Level 2 練習</title>
+  <title>Phonics 自然拼讀練習</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container">
-    <h1>Phonics 自然拼讀 Level 2</h1>
+    <h1>Phonics 自然拼讀第1~7級練習</h1>
 
-    <!-- 顯示框格 -->
-    <div id="level2">
-      <div class="box" id="box1">1號方格</div>
-      <div class="box" id="box2">2號方格</div>
-      <div class="box" id="box3">3號方格</div>
-    </div>
-
-    <!-- 產生字母按鈕 -->
-    <button id="generateLevel2Button">產生字母</button>
-
-    <!-- 顯示語音辨識結果 -->
-    <button id="startSpeechButton">開始發音</button>
-    <p id="speechResult"></p>
-
-    <!-- 顯示受測者姓名 -->
-    <input type="text" id="nameInput" placeholder="填入姓名">
-    
-    <!-- 顯示計數器 -->
-    <p id="visitorCounter">訪問人次：0</p>
-
-    <img id="partnerImage" src="assets/partner.png" alt="中國大陸地區合作夥伴">
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    <!-- Level 1 -->
+    <div id="level1">
+      <h2>Level 1</h2>
+      <div class="box-container">
+        <div class="box" id="level1Box"></div>
+      </div>
+      <button onclick="generateLetter('level1Box')">產生字母</button>
