@@ -36,4 +36,18 @@ h1 {
   border: 2px solid #333;
   background-color: #fff;
   border-radius: 8px;
-  transition: background-color 0.
+  transition: background-color 0.3s ease;
+}
+
+/* 盒子的顏色變化 */
+.box:hover {
+  background-color: #e0e0e0;
+}
+
+/* 按鈕的基本樣式 */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border:
