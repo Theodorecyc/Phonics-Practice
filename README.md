@@ -40,5 +40,8 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    console.log("✅ script.js 已載入");
+</script>
 </body>
 </html>
