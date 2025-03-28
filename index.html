@@ -20,4 +20,28 @@
       </div>
       <button onclick="generateLetter('level1Box')">產生字母</button>
       <button onclick="startSpeechRecognition()">開始發音</button>
-      <p
+      <p id="speechResult1"></p>
+    </div>
+
+    <!-- Level 2 -->
+    <div id="level2">
+      <h2>Level 2</h2>
+      <input type="text" placeholder="填入姓名" id="nameLevel2">
+      <div class="box-container">
+        <div class="box" id="level2Box1"></div>
+        <div class="box" id="level2Box2"></div>
+        <div class="box" id="level2Box3"></div>
+      </div>
+      <button onclick="generateLetter('level2Box1', 'level2Box2', 'level2Box3')">產生字母</button>
+    </div>
+
+    <!-- Level 3 -->
+    <div id="level3">
+      <h2>Level 3</h2>
+      <input type="text" placeholder="填入姓名" id="nameLevel3">
+      <div class="box-container">
+        <div class="box" id="level3Box1"></div>
+        <div class="box" id="level3Box2"></div>
+        <div class="box" id="level3Box3"></div>
+      </div>
+      <button onclick="generateLetter('level3
