@@ -5,16 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phonics Level 1</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .box { font-size: 40px; font-weight: bold; border: 2px solid #000; width: 100px; height: 100px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin-top: 50px; 
+            position: relative;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        .box { 
+            font-size: 40px; 
+            font-weight: bold; 
+            border: 2px solid #000; 
+            width: 100px; 
+            height: 100px; 
+            margin: 20px auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
         .correct { color: green; }
         .incorrect { color: red; }
         .input-section { margin-bottom: 20px; }
+        .partner-section {
+            position: fixed;
+            right: 20px;
+            top: 50px;
+            text-align: center;
+        }
+        .partner-logo {
+            width: 100px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
+    <!-- 公司 LOGO -->
+    <img src="logo.png" alt="公司 Logo" class="logo">
+
     <h1>Phonics Level 1</h1>
+
+    <!-- 訪問計數器 -->
+    <p>網站訪問次數：<span id="visitCount">0</span></p>
 
     <!-- 使用者姓名輸入欄 -->
     <div class="input-section">
@@ -28,6 +63,12 @@
     
     <p id="result"></p>
     <p id="score">正確率: 0% (0/0)</p>
+
+    <!-- 中國大陸地區合作夥伴 -->
+    <div class="partner-section">
+        <p>中國大陸地區合作夥伴</p>
+        <img src="partner.png" alt="合作夥伴 Logo" class="partner-logo">
+    </div>
 
     <script>
         const letters = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh", "Ii", "Jj", "Kk", "Ll", "Mm", "Nn", "Oo", "Pp", "Qq", "Rr", "Ss", "Tt", "Uu", "Vv", "Ww", "Xx", "Yy", "Zz"];
@@ -81,11 +122,3 @@
         }
 
         function updateScore() {
-            const scoreElement = document.getElementById("score");
-            const accuracy = ((correctCount / totalCount) * 100).toFixed(2); // 計算正確率，取小數點後兩位
-            scoreElement.textContent = `正確率: ${accuracy}% (${correctCount}/${totalCount})`;
-        }
-    </script>
-
-</body>
-</html>
