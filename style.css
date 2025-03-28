@@ -1,81 +1,48 @@
-/* 設定整體頁面的基本樣式 */
+/* style.css */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-/* 網頁容器 */
-.container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+header {
+    text-align: center;
+    margin: 20px 0;
 }
 
-/* 標題樣式 */
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+.logo, .partner {
+    width: 100px;
+    margin: 0 10px;
 }
 
-/* 盒子的基本樣式 */
-.box {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  margin: 20px;
-  text-align: center;
-  line-height: 100px;
-  font-size: 24px;
-  font-weight: bold;
-  border: 2px solid #333;
-  background-color: #fff;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+section {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-/* 盒子的顏色變化 */
-.box:hover {
-  background-color: #e0e0e0;
+input {
+    margin: 10px 0;
+    padding: 5px;
+    width: 100%;
 }
 
-/* 按鈕的基本樣式 */
 button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
-/* 輸入框的基本樣式 */
-input[type="text"] {
-  padding: 10px;
-  font-size: 16px;
-  width: 300px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+#visitor-counter {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
 }
-
-/* 訪問計數器的顯示樣式 */
-#visitorCounter {
-  text-align: center;
-  font-size: 18px;
-  color: #333;
-}
-
-/* 夥伴圖片樣式 */
-#partnerImage {
