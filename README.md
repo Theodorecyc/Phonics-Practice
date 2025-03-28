@@ -1,47 +1,33 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phonics 自然拼讀 練習</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+# Phonics 自然拼讀練習
 
-    <header>
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="公司 Logo" class="logo">
-        </div>
-        <h1>Phonics 自然拼讀 練習</h1>
-    </header>
+這是一個線上練習平台，旨在幫助使用者練習自然拼讀 (Phonics) 從 Level 1 到 Level 7。該平台包含語音辨識功能，讓使用者可以練習發音並與正確的拼寫進行對比。
 
-    <div class="container">
-        <label for="username">請輸入您的姓名：</label>
-        <input type="text" id="username" placeholder="請輸入姓名">
-    </div>
+## 功能
+- Level 1~7 拼字練習
+- 語音辨識功能 (僅限 Level 1)
+- 訪問計數器
+- 每級別都可以填入使用者姓名進行記錄
 
-    <div class="container">
-        <h2>Level 1</h2>
-        <div id="letterBox" class="letter-box">?</div>
-        <button id="generateLetterButton">產生字母</button>
-        <button onclick="startSpeechRecognition()">開始發音</button>
-        <p id="result"></p>
-        <p id="score">正確率: 0% (0/0)</p>
-    </div>
+## 如何運行專案
 
-    <footer>
-        <p>瀏覽人數: <span id="visitCount">0</span></p>
-        <div class="partner">
-            <p>中國大陸地區合作夥伴</p>
-            <div class="partner-logo-container">
-                <img src="assets/partner.png" alt="合作夥伴 Logo" class="partner-logo">
-            </div>
-        </div>
-    </footer>
+1. 確保你已安裝 `Node.js`。
+2. 下載專案文件並解壓縮。
+3. 開啟 `index.html` 檔案即可開始使用。
 
-    <script src="script.js"></script>
-    <script>
-    console.log("✅ script.js 已載入");
-</script>
-</body>
-</html>
+## 使用說明
+
+1. 在「填入姓名」欄位輸入你的名字。
+2. 按下「產生字母」按鈕來顯示隨機字母。
+3. 在 Level 1 中，點擊「開始發音」來進行語音辨識。
+4. 重複步驟直到你完成練習。
+
+## 技術細節
+
+- 前端：HTML, CSS, JavaScript
+- 語音辨識使用 Web Speech API
+- 訪問計數使用 JavaScript 增加頁面載入計數
+
+## 貢獻
+
+歡迎任何貢獻！如果你想提交修正或新增功能，請提交 Pull Request。
+
