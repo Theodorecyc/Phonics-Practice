@@ -79,15 +79,3 @@ input[type="text"] {
 
 /* 夥伴圖片樣式 */
 #partnerImage {
-  display: block;
-  margin: 20px auto;
-  max-width: 200px;
-  height: auto;
-  border-radius: 5px;
-}
-
-/* Logo 圖片樣式 */
-#logo {
-  display: block;
-  margin: 20px auto;
-  max-width
