@@ -12,11 +12,15 @@ header {
     padding: 20px;
 }
 
+.logo-container {
+    text-align: center;
+}
+
 .logo {
-    width: 100px;
+    width: 150px;
     height: auto;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto;
 }
 
 .container {
@@ -67,7 +71,13 @@ footer {
     margin-top: 10px;
 }
 
-.partner img {
-    width: 120px;
+.partner-logo-container {
+    text-align: center;
+}
+
+.partner-logo {
+    width: 150px;
     height: auto;
+    display: block;
+    margin: 10px auto;
 }
