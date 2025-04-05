@@ -1,99 +1,75 @@
-// 訪問計數器（本地測試）
-document.addEventListener("DOMContentLoaded", () => {
-  let count = localStorage.getItem("visitCount") || 0;
-  count++;
-  localStorage.setItem("visitCount", count);
-  document.getElementById("visit-count").textContent = count;
+let visitCount = 0;
 
-  createAllLevels();
-});
-
-function createAllLevels() {
-  const levelsContainer = document.getElementById("levels-container");
-
-  const levelConfigs = [
-    { level: 1, letterSets: [['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']] },
-    { level: 2, letterSets: [
-        ['b','c','d','f','g','h','j','k','l','m','n','p','r','s','t','v','w','y','z'],
-        ['a','e','i','o','u'],
-        ['b','c','d','ff','g','ck','ll','m','n','p','s','ss','t','v','x','z']
-      ]
-    },
-    { level: 3, letterSets: [
-        ['b','c','d','f','g','h','j','k','l','m','n','p','r','s','t','v','w','y','z'],
-        ['a','e','i','o','u'],
-        ['be','b','ce','c','de','d','fe','ff','ge','g','ke','ck','le','ll','me','m','ne','n','pe','p','se','s','ss','te','t','ve','v','x','ze','z']
-      ]
-    },
-    { level: 4, letterSets: [[],[],[]] },
-    { level: 5, letterSets: [[],[],[]] },
-    { level: 6, letterSets: [[],[],[]] },
-    { level: 7, letterSets: [[],[],[]] },
-  ];
-
-  for (const config of levelConfigs) {
-    const levelDiv = document.createElement("div");
-    levelDiv.className = "level-block";
-    levelDiv.innerHTML = `
-      <h2>Level ${config.level}</h2>
-      <div class="name-input">
-        姓名：<input type="text" id="name-level-${config.level}" />
-      </div>
-      <div class="card-container" id="cards-level-${config.level}">
-        <div class="card" id="card-${config.level}-1"></div>
-        <div class="card" id="card-${config.level}-2"></div>
-        <div class="card" id="card-${config.level}-3"></div>
-        <button onclick="generateLetters(${config.level})">產生字母</button>
-        ${config.level === 1 ? `<button onclick="startRecognition()">開始發音</button>` : ""}
-      </div>
-      <div id="result-level-${config.level}"></div>
-    `;
-    levelsContainer.appendChild(levelDiv);
-  }
+// Increase visit counter
+function increaseVisitCounter() {
+  visitCount++;
+  document.getElementById("counter").textContent = "Visits: " + visitCount;
 }
 
-function generateLetters(level) {
-  const config = {
-    1: [['Aa','Bb','Cc','Dd','Ee','Ff','Gg','Hh','Ii','Jj','Kk','Ll','Mm','Nn','Oo','Pp','Qq','Rr','Ss','Tt','Uu','Vv','Ww','Xx','Yy','Zz']],
-    2: [
-      ['b','c','d','f','g','h','j','k','l','m','n','p','r','s','t','v','w','y','z'],
-      ['a','e','i','o','u'],
-      ['b','c','d','ff','g','ck','ll','m','n','p','s','ss','t','v','x','z']
-    ],
-    3: [
-      ['b','c','d','f','g','h','j','k','l','m','n','p','r','s','t','v','w','y','z'],
-      ['a','e','i','o','u'],
-      ['be','b','ce','c','de','d','fe','ff','ge','g','ke','ck','le','ll','me','m','ne','n','pe','p','se','s','ss','te','t','ve','v','x','ze','z']
-    ],
-  };
-
-  const letters = config[level] || [['','',''],['','',''],['','','']];
-  for (let i = 0; i < 3; i++) {
-    const random = letters[i][Math.floor(Math.random() * letters[i].length)] || '';
-    document.getElementById(`card-${level}-${i+1}`).textContent = random;
-  }
+// Randomly generate letters for each level
+function generateLetterLevel1() {
+  const letters = ['a', 'e', 'i', 'o', 'u'];
+  document.getElementById("level1-card").textContent = letters[Math.floor(Math.random() * letters.length)];
 }
 
-// 語音辨識（僅 Level 1 用）
-function startRecognition() {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = "en-US";
-  recognition.start();
-
-  recognition.onresult = function(event) {
-    const spoken = event.results[0][0].transcript.trim().toLowerCase();
-    const level = 1;
-    const expected = document.getElementById(`card-${level}-1`).textContent.toLowerCase();
-
-    const resultBox = document.getElementById(`result-level-${level}`);
-    if (spoken === expected.toLowerCase()) {
-      resultBox.textContent = `正確！你說的是：${spoken}`;
-    } else {
-      resultBox.textContent = `錯誤，你說的是：${spoken}，正確答案是：${expected}`;
-    }
-  };
-
-  recognition.onerror = function(event) {
-    alert("辨識錯誤：" + event.error);
-  };
+function generateLetterLevel2() {
+  const letters1 = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'y', 'z'];
+  const letters2 = ['a', 'e', 'i', 'o', 'u'];
+  const letters3 = ['b', 'c', 'd', 'ff', 'g', 'ck', 'll', 'm', 'n', 'p', 's', 'ss', 't', 'v', 'x', 'z'];
+  
+  document.getElementById("level2-card1").textContent = letters1[Math.floor(Math.random() * letters1.length)];
+  document.getElementById("level2-card2").textContent = letters2[Math.floor(Math.random() * letters2.length)];
+  document.getElementById("level2-card3").textContent = letters3[Math.floor(Math.random() * letters3.length)];
 }
+
+function generateLetterLevel3() {
+  const letters1 = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'y', 'z'];
+  const letters2 = ['a', 'e', 'i', 'o', 'u'];
+  const letters3 = ['be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z'];
+
+  document.getElementById("level3-card1").textContent = letters1[Math.floor(Math.random() * letters1.length)];
+  document.getElementById("level3-card2").textContent = letters2[Math.floor(Math.random() * letters2.length)];
+  document.getElementById("level3-card3").textContent = letters3[Math.floor(Math.random() * letters3.length)];
+}
+
+function generateLetterLevel4() {
+  const letters1 = ['b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'v', 'w', 'y', 'z'];
+  const letters2 = ['a', 'e', 'I', 'o', 'u'];
+  const letters3 = ['mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'];
+
+  document.getElementById("level4-card1").textContent = letters1[Math.floor(Math.random() * letters1.length)];
+  document.getElementById("level4-card2").textContent = letters2[Math.floor(Math.random() * letters2.length)];
+  document.getElementById("level4-card3").textContent = letters3[Math.floor(Math.random() * letters3.length)];
+}
+
+function generateLetterLevel5() {
+  const letters1 = ['b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'dw', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'gh', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'squ', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'tw', 'ts', 'v', 'w', 'y', 'z'];
+  const letters2 = ['a', 'e', 'i', 'o', 'u', 'ai', 'ao', 'au', 'ea', 'ee', 'ei', 'eo', 'eu', 'ia', 'ie', 'io', 'iu', 'oa', 'oo', 'oi', 'ou'];
+  const letters3 = ['gh', 'ld', 'tch', 'dge', 'mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'];
+
+  document.getElementById("level5-card1").textContent = letters1[Math.floor(Math.random() * letters1.length)];
+  document.getElementById("level5-card2").textContent = letters2[Math.floor(Math.random() * letters2.length)];
+  document.getElementById("level5-card3").textContent = letters3[Math.floor(Math.random() * letters3.length)];
+}
+
+function generateLetterLevel6() {
+  const letters1 = ['scr', 'sch', 'str', 'spl', 'wh', 'ch', 'th', 'ph', 'sh', 'qu', 'b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'dw', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'gh', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'squ', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'tw', 'ts', 'v', 'w', 'y', 'z'];
+  const letters2 = ['a', 'e', 'i', 'o', 'u', 'ai', 'ao', 'au', 'ea', 'ee', 'ei', 'eo', 'eu', 'ia', 'ie', 'io', 'iu', 'oa', 'oo', 'oi', 'ou'];
+  const letters3 = ['r', 'l', 'w', 'y', 'gh', 'ch', 'sh', 'ph', 'ld', 'tch', 'dge', 'mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'];
+
+  document.getElementById("level6-card1").textContent = letters1[Math.floor(Math.random() * letters1.length)];
+  document.getElementById("level6-card2").textContent = letters2[Math.floor(Math.random() * letters2.length)];
+  document.getElementById("level6-card3").textContent = letters3[Math.floor(Math.random() * letters3.length)];
+}
+
+function generateLetterLevel7() {
+  const letters1 = ['scr', 'sch', 'str', 'spl', 'wh', 'ch', 'th', 'ph', 'sh', 'qu', 'b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'dw', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'gh', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'squ', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'tw', 'ts', 'v', 'w', 'y', 'z'];
+  const letters2 = ['a', 'e', 'i', 'o', 'u', 'ai', 'ao', 'au', 'ea', 'ee', 'ei', 'eo', 'eu', 'ia', 'ie', 'io', 'iu', 'oa', 'oo', 'oi', 'ou'];
+  const letters3 = ['cy', 'dy', 'fy', 'gy', 'ky', 'ly', 'my', 'ny', 'py', 'ry', 'sy', 'ty', 'vy', 'wy', 'xy', 'zy', 'dle', 'cle', 'tle', 'ple', 'cial', 'tial', 'tion', 'dual', 'cious', 'ture', 'gia', 'tious', 'lious', 'r', 'l', 'w', 'y', 'gh', 'ch', 'sh', 'ph', 'ld', 'tch', 'dge', 'mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'];
+
+  document.getElementById("level7-card1").textContent = letters1[Math.floor(Math.random() * letters1.length)];
+  document.getElementById("level7-card2").textContent = letters2[Math.floor(Math.random() * letters2.length)];
+  document.getElementById("level7-card3").textContent = letters3[Math.floor(Math.random() * letters3.length)];
+}
+
+increaseVisitCounter();
