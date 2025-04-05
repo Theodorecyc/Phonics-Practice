@@ -1,24 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Phonics 練習</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phonics Practice - Levels 1 to 7</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <img src="assets/logo.png" alt="Logo" class="logo"/>
-    <span class="counter">訪問人數：<span id="visit-count">0</span></span>
-    <div class="partner">
+    <img src="assets/logo.png" alt="Logo" class="logo">
+    <div class="partner-section">
       <span>中國大陸地區合作夥伴</span>
-      <img src="assets/partner.png" alt="Partner" class="partner-logo"/>
+      <img src="assets/partner.png" alt="Partner Logo" class="partner-logo">
     </div>
+    <div class="counter" id="counter">Visits: 0</div>
   </header>
 
   <main>
-    <!-- Levels 1 - 7 -->
-    <div id="levels-container"></div>
+    <!-- Level 1 -->
+    <div class="level-section" id="level1">
+      <h2>Level 1</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level1-card"></div>
+      </div>
+      <button onclick="generateLetterLevel1()">Generate Letter</button>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="level-section" id="level2">
+      <h2>Level 2</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level2-card1"></div>
+        <div class="card" id="level2-card2"></div>
+        <div class="card" id="level2-card3"></div>
+      </div>
+      <button onclick="generateLetterLevel2()">Generate Letters</button>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="level-section" id="level3">
+      <h2>Level 3</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level3-card1"></div>
+        <div class="card" id="level3-card2"></div>
+        <div class="card" id="level3-card3"></div>
+      </div>
+      <button onclick="generateLetterLevel3()">Generate Letters</button>
+    </div>
+
+    <!-- Level 4 -->
+    <div class="level-section" id="level4">
+      <h2>Level 4</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level4-card1"></div>
+        <div class="card" id="level4-card2"></div>
+        <div class="card" id="level4-card3"></div>
+      </div>
+      <button onclick="generateLetterLevel4()">Generate Letters</button>
+    </div>
+
+    <!-- Level 5 -->
+    <div class="level-section" id="level5">
+      <h2>Level 5</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level5-card1"></div>
+        <div class="card" id="level5-card2"></div>
+        <div class="card" id="level5-card3"></div>
+      </div>
+      <button onclick="generateLetterLevel5()">Generate Letters</button>
+    </div>
+
+    <!-- Level 6 -->
+    <div class="level-section" id="level6">
+      <h2>Level 6</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level6-card1"></div>
+        <div class="card" id="level6-card2"></div>
+        <div class="card" id="level6-card3"></div>
+      </div>
+      <button onclick="generateLetterLevel6()">Generate Letters</button>
+    </div>
+
+    <!-- Level 7 -->
+    <div class="level-section" id="level7">
+      <h2>Level 7</h2>
+      <input type="text" class="name-input" placeholder="Enter your name">
+      <div class="card-container">
+        <div class="card" id="level7-card1"></div>
+        <div class="card" id="level7-card2"></div>
+        <div class="card" id="level7-card3"></div>
+      </div>
+      <button onclick="generateLetterLevel7()">Generate Letters</button>
+    </div>
   </main>
 
   <script src="script.js"></script>
