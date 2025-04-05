@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phonics 練習</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phonics 練習</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Logo and Partner -->
-    <header>
-        <img src="assets/logo.png" alt="公司Logo" class="logo">
-        <img src="assets/partner.png" alt="合作夥伴" class="partner">
-    </header>
+  <!-- Logo + 合作夥伴 -->
+  <header>
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+    <div class="partner">
+      <span>中國大陸地區合作夥伴</span>
+      <img src="assets/partner.png" alt="Partner" class="partner-img" />
+    </div>
+  </header>
 
-    <!-- Global access count -->
-    <div id="visitor-counter">訪問次數: <span id="count">0</span></div>
+  <!-- Level 1 -->
+  <section class="level" id="level1">
+    <h2>Level 1</h2>
+    <label>受測者姓名: <input type="text" /></label>
+    <div class="card-container single">
+      <div id="letterDisplay1" class="card">?</div>
+      <button onclick="generateRandomLetter()">產生字母</button>
+    </div>
+    <button onclick="startRecognition()">開始發音</button>
+    <p id="result1"></p>
+  </section>
 
-    <!-- Level 1 -->
-    <section id="level-1">
-        <h2>Level 1</h2>
-        <input type="text" id="name-level-1" placeholder="填入姓名">
-        <button onclick="generateLetter(1)">產生字母</button>
-        <div id="letters-level-1"></div>
-        <button onclick="startRecognition(1)">開始發音</button>
-        <p id="result-level-1"></p>
-    </section>
+  <!-- Level 2 -->
+  <section class="level" id="level2">
+    <h2>Level 2</h2>
+    <label>受測者姓名: <input type="text" /></label>
+    <div class="card-container">
+      <div id="level2-box1" class="card">?</div>
+      <div id="level2-box2" class="card">?</div>
+      <div id="level2-box3" class="card">?</div>
+      <button onclick="generateLevel2()">產生字母</button>
+    </div>
+  </section>
 
-    <!-- Level 2 -->
-    <section id="level-2">
-        <h2>Level 2</h2>
-        <input type="text" id="name-level-2" placeholder="填入姓名">
-        <button onclick="generateLetter(2)">產生字母</button>
-        <div id="letters-level-2"></div>
-    </section>
+  <!-- Level 3 -->
+  <section class="level" id="level3">
+    <h2>Level 3</h2>
+    <label>受測者姓名: <input type="text" /></label>
+    <div class="card-container">
+      <div id="level3-box1" class="card">?</div>
+      <div id="level3-box2" class="card">?</div>
+      <div id="level3-box3" class="card">?</div>
+      <button onclick="generateLevel3()">產生字母</button>
+    </div>
+  </section>
 
-    <!-- Level 3 -->
-    <section id="level-3">
-        <h2>Level 3</h2>
-        <input type="text" id="name-level-3" placeholder="填入姓名">
-        <button onclick="generateLetter(3)">產生字母</button>
-        <div id="letters-level-3"></div>
-    </section>
+  <!-- 預留 Level 4~7 -->
+  <section class="level" id="level4"><h2>Level 4</h2><label>受測者姓名: <input type="text" /></label></section>
+  <section class="level" id="level5"><h2>Level 5</h2><label>受測者姓名: <input type="text" /></label></section>
+  <section class="level" id="level6"><h2>Level 6</h2><label>受測者姓名: <input type="text" /></label></section>
+  <section class="level" id="level7"><h2>Level 7</h2><label>受測者姓名: <input type="text" /></label></section>
 
-    <!-- Similar for Level 4, 5, 6, 7 -->
+  <!-- 訪問計數器 -->
+  <footer>
+    <p>您是第 <span id="visitorCount">1</span> 位訪客</p>
+  </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
