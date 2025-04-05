@@ -1,76 +1,103 @@
-// script.js
-
 // 訪問計數器
-let visitCount = localStorage.getItem('visitCount') ? parseInt(localStorage.getItem('visitCount')) : 0;
-document.getElementById('count').textContent = visitCount;
+let visitCount = localStorage.getItem("visitCount") || 0;
+visitCount++;
+localStorage.setItem("visitCount", visitCount);
+document.getElementById("visit-counter").innerText = `訪問人次：${visitCount}`;
 
-// 更新訪問計數器
-function updateVisitCount() {
-    visitCount++;
-    localStorage.setItem('visitCount', visitCount);
-    document.getElementById('count').textContent = visitCount;
+// Level 對應的字母資料
+const levelData = {
+  1: {
+    letterSet: [
+      'Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii',
+      'Jj', 'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr',
+      'Ss', 'Tt', 'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz'
+    ],
+    useSpeech: true
+  },
+  2: {
+    set1: ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'y', 'z'],
+    set2: ['a', 'e', 'i', 'o', 'u'],
+    set3: ['b', 'c', 'd', 'ff', 'g', 'ck', 'll', 'm', 'n', 'p', 's', 'ss', 't', 'v', 'x', 'z'],
+    useSpeech: false
+  },
+  3: {
+    set1: ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'y', 'z'],
+    set2: ['a', 'e', 'i', 'o', 'u'],
+    set3: ['be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm',
+           'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z'],
+    useSpeech: false
+  },
+  4: {
+    set1: ['b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'v', 'w', 'y', 'z'],
+    set2: ['a', 'e', 'i', 'o', 'u'],
+    set3: ['mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff',
+           'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss',
+           'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'],
+    useSpeech: false
+  },
+  5: {
+    set1: ['b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'dw', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'gh', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'squ', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'tw', 'ts', 'v', 'w', 'y', 'z'],
+    set2: ['a', 'e', 'i', 'o', 'u', 'ai', 'ao', 'au', 'ea', 'ee', 'ei', 'eo', 'eu', 'ia', 'ie', 'io', 'iu', 'oa', 'oo', 'oi', 'ou'],
+    set3: ['gh', 'ld', 'tch', 'dge', 'mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd',
+           'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss',
+           'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'],
+    useSpeech: false
+  },
+  6: {
+    set1: ['scr', 'sch', 'str', 'spl', 'wh', 'ch', 'th', 'ph', 'sh', 'qu', 'b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'dw', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'gh', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'squ', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'tw', 'ts', 'v', 'w', 'y', 'z'],
+    set2: ['a', 'e', 'i', 'o', 'u', 'ai', 'ao', 'au', 'ea', 'ee', 'ei', 'eo', 'eu', 'ia', 'ie', 'io', 'iu', 'oa', 'oo', 'oi', 'ou'],
+    set3: ['r', 'l', 'w', 'y', 'gh', 'ch', 'sh', 'ph', 'ld', 'tch', 'dge', 'mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd',
+           'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'],
+    useSpeech: false
+  },
+  7: {
+    set1: ['scr', 'sch', 'str', 'spl', 'wh', 'ch', 'th', 'ph', 'sh', 'qu', 'b', 'bl', 'br', 'c', 'cl', 'cr', 'd', 'dr', 'dw', 'f', 'fl', 'fr', 'g', 'gl', 'gr', 'gh', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'pl', 'pr', 'r', 's', 'squ', 'sl', 'st', 'sc', 'sk', 'sm', 'sn', 'sw', 't', 'tr', 'tw', 'ts', 'v', 'w', 'y', 'z'],
+    set2: ['a', 'e', 'i', 'o', 'u', 'ai', 'ao', 'au', 'ea', 'ee', 'ei', 'eo', 'eu', 'ia', 'ie', 'io', 'iu', 'oa', 'oo', 'oi', 'ou'],
+    set3: ['cy', 'dy', 'fy', 'gy', 'ky', 'ly', 'my', 'ny', 'py', 'ry', 'sy', 'ty', 'vy', 'wy', 'xy', 'zy', 'dle', 'cle', 'tle', 'ple', 'cial', 'tial', 'tion', 'dual', 'cious', 'ture', 'gia', 'tious', 'lious',
+           'r', 'l', 'w', 'y', 'gh', 'ch', 'sh', 'ph', 'ld', 'tch', 'dge', 'mb', 'bt', 'nd', 'nt', 'mp', 'th', 'nk', 'be', 'b', 'ce', 'c', 'de', 'd',
+           'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p', 'se', 's', 'ss', 'te', 't', 've', 'v', 'x', 'ze', 'z', 'zz'],
+    useSpeech: false
+  }
+};
+
+// 隨機取值
+function getRandomFromArray(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-updateVisitCount(); // 網頁加載時就更新訪問次數
-
-// 生成隨機字母
-function generateLetter(level) {
-    let letters;
-    switch(level) {
-        case 1:
-            letters = ['Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii', 'Jj', 'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr', 'Ss', 'Tt', 'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz'];
-            break;
-        case 2:
-            letters = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'y', 'z'];
-            break;
-        case 3:
-            letters = ['be', 'b', 'ce', 'c', 'de', 'd', 'fe', 'ff', 'ge', 'g', 'ke', 'ck', 'le', 'll', 'me', 'm', 'ne', 'n', 'pe', 'p'];
-            break;
-        // For Levels 4-7, continue adding your respective letters...
-    }
-
-    const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-    document.getElementById(`letters-level-${level}`).innerText = randomLetter;
+// 點擊產生按鈕
+function generateLetters(level) {
+  const data = levelData[level];
+  if (level === 1) {
+    document.getElementById(`letter-box-${level}`).innerText = getRandomFromArray(data.letterSet);
+  } else {
+    document.getElementById(`box-${level}-1`).innerText = getRandomFromArray(data.set1);
+    document.getElementById(`box-${level}-2`).innerText = getRandomFromArray(data.set2);
+    document.getElementById(`box-${level}-3`).innerText = getRandomFromArray(data.set3);
+  }
 }
 
-// 語音辨識
-function startRecognition(level) {
-    if ('webkitSpeechRecognition' in window) {
-        const recognition = new webkitSpeechRecognition();
-        recognition.lang = 'en-US';
-        recognition.continuous = false;
-        recognition.interimResults = false;
+// 語音辨識（只用於 Level 1）
+function startSpeechRecognition(level) {
+  const expected = document.getElementById(`letter-box-${level}`).innerText.toLowerCase();
+  const resultEl = document.getElementById(`result-${level}`);
 
-        recognition.onstart = function () {
-            console.log("語音辨識開始...");
-        };
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'en-US';
+  recognition.interimResults = false;
 
-        recognition.onresult = function (event) {
-            const transcript = event.results[0][0].transcript;
-            document.getElementById(`result-level-${level}`).textContent = `辨識結果：${transcript}`;
-        };
-
-        recognition.onerror = function (event) {
-            document.getElementById(`result-level-${level}`).textContent = '語音辨識錯誤！';
-        };
-
-        recognition.start();
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript.toLowerCase();
+    if (transcript.includes(expected)) {
+      resultEl.innerText = `✅ 正確：${transcript}`;
     } else {
-        alert("語音辨識不支援！")
+      resultEl.innerText = `❌ 錯誤，辨識為：${transcript}`;
     }
-}
-function generateLevel3() {
-  const list1 = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "y", "z"];
-  const list2 = ["a", "e", "i", "o", "u"];
-  const list3 = ["be", "b", "ce", "c", "de", "d", "fe", "ff", "ge", "g", "ke", "ck", "le", "ll", "me", "m", "ne", "n", "pe", "p", "se", "s", "ss", "te", "t", "ve", "v", "x", "ze", "z"];
-  
-  document.getElementById("level3-box1").innerText = list1[Math.floor(Math.random() * list1.length)];
-  document.getElementById("level3-box2").innerText = list2[Math.floor(Math.random() * list2.length)];
-  document.getElementById("level3-box3").innerText = list3[Math.floor(Math.random() * list3.length)];
-}
+  };
 
-// 預留 Level 4~7 的按鈕函式
-function generateLevel4() {}
-function generateLevel5() {}
-function generateLevel6() {}
-function generateLevel7() {}
+  recognition.onerror = () => {
+    resultEl.innerText = "⚠️ 語音辨識錯誤，請重試";
+  };
+
+  recognition.start();
+}
