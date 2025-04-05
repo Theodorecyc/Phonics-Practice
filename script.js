@@ -59,3 +59,18 @@ function startRecognition(level) {
         alert("語音辨識不支援！")
     }
 }
+function generateLevel3() {
+  const list1 = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "y", "z"];
+  const list2 = ["a", "e", "i", "o", "u"];
+  const list3 = ["be", "b", "ce", "c", "de", "d", "fe", "ff", "ge", "g", "ke", "ck", "le", "ll", "me", "m", "ne", "n", "pe", "p", "se", "s", "ss", "te", "t", "ve", "v", "x", "ze", "z"];
+  
+  document.getElementById("level3-box1").innerText = list1[Math.floor(Math.random() * list1.length)];
+  document.getElementById("level3-box2").innerText = list2[Math.floor(Math.random() * list2.length)];
+  document.getElementById("level3-box3").innerText = list3[Math.floor(Math.random() * list3.length)];
+}
+
+// 預留 Level 4~7 的按鈕函式
+function generateLevel4() {}
+function generateLevel5() {}
+function generateLevel6() {}
+function generateLevel7() {}
