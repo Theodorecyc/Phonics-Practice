@@ -7,97 +7,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Logo + 合作夥伴 -->
   <header>
-    <img src="assets/logo.png" alt="Logo" class="logo" />
+    <img src="assets/logo.png" alt="Logo" class="logo"/>
+    <span class="counter">訪問人數：<span id="visit-count">0</span></span>
     <div class="partner">
       <span>中國大陸地區合作夥伴</span>
-      <img src="assets/partner.png" alt="Partner" class="partner-img" />
+      <img src="assets/partner.png" alt="Partner" class="partner-logo"/>
     </div>
   </header>
 
-  <!-- Level 1 -->
-  <section class="level" id="level1">
-    <h2>Level 1</h2>
-    <label>受測者姓名: <input type="text" /></label>
-    <div class="card-container single">
-      <div id="letterDisplay1" class="card">?</div>
-      <button onclick="generateRandomLetter()">產生字母</button>
-    </div>
-    <button onclick="startRecognition()">開始發音</button>
-    <p id="result1"></p>
-  </section>
+  <main>
+    <!-- Levels 1 - 7 -->
+    <div id="levels-container"></div>
+  </main>
 
-  <!-- Level 2 -->
-  <section class="level" id="level2">
-    <h2>Level 2</h2>
-    <label>受測者姓名: <input type="text" /></label>
-    <div class="card-container">
-      <div id="level2-box1" class="card">?</div>
-      <div id="level2-box2" class="card">?</div>
-      <div id="level2-box3" class="card">?</div>
-      <button onclick="generateLevel2()">產生字母</button>
-    </div>
-  </section>
-
- <!-- Level 3 -->
-<div class="level-section">
-  <h2>Level 3</h2>
-  <label>受測者姓名：</label>
-  <input type="text" class="name-input" placeholder="請輸入姓名">
-  <div class="card-container">
-    <div class="card" id="level3-box1">-</div>
-    <div class="card" id="level3-box2">-</div>
-    <div class="card" id="level3-box3">-</div>
-    <button onclick="generateLevel3()">產生字母</button>
-  </div>
-</div>
-
-<!-- Level 4 -->
-<div class="level-section">
-  <h2>Level 4</h2>
-  <input type="text" class="name-input" placeholder="填入姓名">
-  <div class="card-container">
-    <div id="level4-box1" class="card">?</div>
-    <div id="level4-box2" class="card">?</div>
-    <div id="level4-box3" class="card">?</div>
-    <button onclick="generateLevel4()">產生字母</button>
-  </div>
-</div>
-
-<!-- Level 5 -->
-<div class="level-section">
-  <h2>Level 5</h2>
-  <input type="text" class="name-input" placeholder="填入姓名">
-  <div class="card-container">
-    <div id="level5-box1" class="card">?</div>
-    <div id="level5-box2" class="card">?</div>
-    <div id="level5-box3" class="card">?</div>
-    <button onclick="generateLevel5()">產生字母</button>
-  </div>
-</div>
-
-<!-- Level 6 -->
-<div class="level-section">
-  <h2>Level 6</h2>
-  <input type="text" class="name-input" placeholder="填入姓名">
-  <div class="card-container">
-    <div id="level6-box1" class="card">?</div>
-    <div id="level6-box2" class="card">?</div>
-    <div id="level6-box3" class="card">?</div>
-    <button onclick="generateLevel6()">產生字母</button>
-  </div>
-</div>
-
-<!-- Level 7 -->
-<div class="level-section">
-  <h2>Level 7</h2>
-  <input type="text" class="name-input" placeholder="填入姓名">
-  <div class="card-container">
-    <div id="level7-box1" class="card">?</div>
-    <div id="level7-box2" class="card">?</div>
-    <div id="level7-box3" class="card">?</div>
-    <button onclick="generateLevel7()">產生字母</button>
-  </div>
-</div>
-
+  <script src="script.js"></script>
+</body>
+</html>
